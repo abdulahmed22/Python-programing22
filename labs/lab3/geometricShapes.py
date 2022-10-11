@@ -36,11 +36,15 @@ class geometry_shapes():
     #Takes in new values of x and y to move the geometric shape to that position
     def translate(self, new_x:float, new_y:float) -> None:
         if not isinstance(new_x,(int,float)) or not isinstance(new_y, (int,float)):
-            raise ValueError("Only values of int or float")
+            raise ValueError("Only values of x and y which are an int or a float")
         if new_x <= 0 or new_y <= 0:
             raise ValueError("Values have to be greater than 0")
         self.x = new_x
         self.y = new_y
+    
+     # Representation
+    def __repr__(self) -> str:
+        return f"The geometric shape has its center at ({self.x},{self.y})"
 
 class Circle(geometry_shapes):
     def __init__(self, x: float, y: float, radius:float) -> None:
@@ -79,7 +83,9 @@ class Circle(geometry_shapes):
             return True
         else:
             return False
-
+     # Representation
+    def __repr__(self) -> str:
+        return super().__repr__() + f"  with a radius: {self.radius}"
 
 class Rectangle(geometry_shapes):
     def __init__(self, x: float, y: float, length:float, width:float) -> None:
@@ -131,6 +137,10 @@ class Rectangle(geometry_shapes):
         '''Returns true if two rectangles are the same.'''
         return (type(other) == Rectangle and self.length == other.length and self.width == other.width)
 
+     # Representation
+    def __repr__(self) -> str:
+        return super().__repr__() + f" with a length: {self.length}, a width of: {self.width}"
+
 
 class Cube(Rectangle):
     def __init__(self, x: float, y: float, z: float, length: float, width: float, height:float) -> None:
@@ -181,7 +191,7 @@ class Cube(Rectangle):
 
     def translate(self, new_x: float, new_y: float, new_z:float) -> None:
         if not isinstance(new_x,(int,float)) or not isinstance(new_y, (int,float)) or not isinstance(new_z, (int,float)) :
-            raise ValueError("Only values of int or float")
+            raise ValueError("Only values of x and y which are an int or a float")
         if new_x <=0 or new_y <=0 or new_z <= 0:
             raise ValueError("Values of x y and z have to be greater than 0")
         self.x = new_x
@@ -192,6 +202,9 @@ class Cube(Rectangle):
         '''Returns true if two cubes are the same.'''
         return (type(other) == Cube and self.length == other.length and self.width == other.width and self.height == other.height)
 
+    # Representation
+    def __repr__(self) -> str:
+        return super().__repr__() + f" and a height of: {self.height} "
 
 class Sphere(Circle):
     def __init__(self, x: float, y: float, z: float, radius: float) -> None:
@@ -229,7 +242,7 @@ class Sphere(Circle):
 
     def translate(self, new_x: float, new_y: float, new_z:float) -> None:
         if not isinstance(new_x,(int,float)) or not isinstance(new_y, (int,float)) or not isinstance(new_z, (int,float)) :
-            raise ValueError("Only values of int or float")
+            raise ValueError("Only values of x and y which are an int or a float")
         if new_x <=0 or new_y <=0 or new_z <= 0:
             raise ValueError("Values of x y and z have to be greater than 0")
         self.x = new_x
@@ -239,3 +252,7 @@ class Sphere(Circle):
     def __eq__(self, other) -> bool:
         '''Returns true if two spheres are the same.'''
         return (type(other) == Sphere and self.radius == other.radius)
+    
+     # Representation
+    def __repr__(self) -> str:
+        return super().__repr__()
